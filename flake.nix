@@ -8,7 +8,7 @@
       (system:
         let
           overlays = [ (final: prev: {
-            python3Packages.numpy = prev.python3Packages.numpy.overrideAttrs (old: { mesonFlags = (old.mesonFlags or []) ++ [
+            python314Packages.numpy = prev.python314Packages.numpy.overrideAttrs (old: { mesonFlags = (old.mesonFlags or []) ++ [
               "-Dcpu-baseline=native"
               "-Dcpu-dispatch=none"
             ];}); 
@@ -20,7 +20,7 @@
         with pkgs;
         {
           devShells.default = mkShell {
-            buildInputs = [ python3 python3Packages.numpy ];
+            buildInputs = [ python314 python314Packages.numpy ];
           };
         }
       );
