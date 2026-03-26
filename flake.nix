@@ -7,7 +7,7 @@
     flake-utils.lib.eachDefaultSystem
       (system:
         let
-          overlays = [ ];
+          overlays = [ (import ./numpy.nix) ];
           pkgs = import nixpkgs {
             inherit system overlays;
           };
