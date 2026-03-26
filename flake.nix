@@ -7,7 +7,12 @@
     flake-utils.lib.eachDefaultSystem
       (system:
         let
-          overlays = [ (import ./numpy.nix) ];
+          overlays = [ (final: prev: {
+            python3Packages.numpy = prev.python3Packages.numpy.overrideAttrs (old: { mesonFlags = (old.mesonFlags or []) ++ [
+              "-Dcpu-baseline=native"
+              "-Dcpu-dispatch=none"
+            ];}); 
+          }) ];
           pkgs = import nixpkgs {
             inherit system overlays;
           };
