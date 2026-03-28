@@ -9,8 +9,8 @@
         let
           overlays = [ (final: prev: {
             python314Packages.numpy = prev.python314Packages.numpy.overrideAttrs (old: { mesonFlags = (old.mesonFlags or []) ++ [
-              "-Dcpu-baseline=native"
-              "-Dcpu-dispatch=none"
+              "-Dcpu-baseline=none"
+              # "-Dcpu-dispatch=none"
             ];}); 
           }) ];
           pkgs = import nixpkgs {
